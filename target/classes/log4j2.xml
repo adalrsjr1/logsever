@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://logging.apache.org/log4j/2.x/manual/configuration.html -->
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+        	<!-- https://marketplace.eclipse.org/content/ansi-escape-console -->
+        	<!-- https://logging.apache.org/log4j/2.x/manual/layouts.html#PatternLayout -->
+            <PatternLayout pattern="%d{UNIX_MILLIS} [%t]  %highlight{%-5level}{STYLE=logback} %logger{36} - %msg%n" />
+        </Console>
+        <File name="MyFile" fileName="src/main/resources/logs/all.log" immediateFlush="false" append="false">
+            <PatternLayout pattern="%d{UNIX_MILLIS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+    <Loggers>
+    	<!--  additivity attribute allows show message in ROOT logger -->
+    	<Logger name="com.adalrsjr1.calculadorajni.App" level="ALL" additivity="true">
+    		<AppenderRef ref="MyFile"/>
+    	</Logger>
+        <Root level="ALL">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
